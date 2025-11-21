@@ -631,7 +631,7 @@ export default function App() {
               className="w-32 h-32 md:w-48 md:h-48 rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-[0_0_50px_rgba(0,255,136,0.2)] mb-8 relative z-20 bg-black/50"
             >
               <video
-                src="coin.mp4"
+                src="/coin.mp4"
                 autoPlay
                 loop
                 muted
