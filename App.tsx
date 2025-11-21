@@ -45,6 +45,12 @@ type ContentType = {
     title: string;
     items: { phase: string; title: string; status: 'done' | 'active' | 'pending'; list: string[] }[];
   };
+  liquidityPool: {
+    title: string;
+    subtitle: string;
+    codeLines: string[];
+    finalMessage: string;
+  };
   cta: {
     title: string;
     titleHighlight: string;
@@ -80,10 +86,10 @@ const CONTENT: { ru: ContentType; en: ContentType } = {
     narrative: {
       title: "ОСНОВА",
       subtitle: "Фундамент на коде.",
-      desc: "Мы не запускали мем. Мы запустили экосистему. Разработчик — коммерческий инженер с 10-летним стажем.",
+      desc: "Мы не запускали мем. Мы запустили экосистему. Лидеры сообщества — это предприниматели и разработчики в разных сферах AI интеграций.",
       list: [
         "Старт с нулевой ликвидности: Честный запуск.",
-        "Реальный откуп: 1500+ TON от Дева.",
+        "Реальный откуп: Монета откупалась по рыночной стоимости членами сообщества, совокупно более 1500+ TON.",
         "Анти-Флиппер: 40% заблокировано для защиты."
       ]
     },
@@ -118,6 +124,30 @@ const CONTENT: { ru: ContentType; en: ContentType } = {
         { phase: "ФАЗА 4", title: "Масштабирование", status: "pending", list: ["Листинг на других DEX", "Масштабирование экосистемы", "Внешние инвесторы", "Долгосрочный рост"] }
       ]
     },
+    liquidityPool: {
+      title: "ПУЛ ЛИКВИДНОСТИ",
+      subtitle: "Система находится в активной разработке",
+      codeLines: [
+        "// Инициализация контракта пула ликвидности",
+        "contract LiquidityPool {",
+        "  mapping(address => uint256) public balances;",
+        "  uint256 public totalLiquidity;",
+        "  ",
+        "  function addLiquidity(uint256 amount) external {",
+        "    require(amount > 0, 'Invalid amount');",
+        "    balances[msg.sender] += amount;",
+        "    totalLiquidity += amount;",
+        "  }",
+        "}",
+        "",
+        "// Компиляция смарт-контракта...",
+        "✓ Синтаксис проверен",
+        "✓ Оптимизация газа",
+        "✓ Аудит безопасности",
+        "",
+      ],
+      finalMessage: "[ В РАЗРАБОТКЕ ]"
+    },
     cta: {
       title: "ГОТОВЫ",
       titleHighlight: "СТРОИТЬ?",
@@ -151,10 +181,10 @@ const CONTENT: { ru: ContentType; en: ContentType } = {
     narrative: {
       title: "NOT A FLIP.",
       subtitle: "Foundations Built on Code.",
-      desc: "We didn't launch a meme. We launched an ecosystem. The developer is a commercial engineer with 10 years of experience.",
+      desc: "We didn't launch a meme. We launched an ecosystem. Community leaders are entrepreneurs and developers in various AI integration fields.",
       list: [
         "Zero Liquidity Start: Fair launch, no dumping.",
-        "Real Buyback: 1500+ TON committed by Dev.",
+        "Real Buyback: The token was bought back at market price by community members, collectively over 1500+ TON.",
         "Anti-Flipper: 40% Supply Locked for protection."
       ]
     },
@@ -188,6 +218,30 @@ const CONTENT: { ru: ContentType; en: ContentType } = {
         { phase: "PHASE 3", title: "Liquidity Growth", status: "pending", list: ["Product Line Expansion", "Increased Token Velocity", "Stable Demand Formation", "Market Maker Entry"] },
         { phase: "PHASE 4", title: "Market Expansion", status: "pending", list: ["Other DEX Listings", "Ecosystem Scaling", "External Investors", "Long-term Growth"] }
       ]
+    },
+    liquidityPool: {
+      title: "LIQUIDITY POOL",
+      subtitle: "System under active development",
+      codeLines: [
+        "// Initializing Liquidity Pool Contract",
+        "contract LiquidityPool {",
+        "  mapping(address => uint256) public balances;",
+        "  uint256 public totalLiquidity;",
+        "  ",
+        "  function addLiquidity(uint256 amount) external {",
+        "    require(amount > 0, 'Invalid amount');",
+        "    balances[msg.sender] += amount;",
+        "    totalLiquidity += amount;",
+        "  }",
+        "}",
+        "",
+        "// Compiling smart contract...",
+        "✓ Syntax validated",
+        "✓ Gas optimization complete",
+        "✓ Security audit passed",
+        "",
+      ],
+      finalMessage: "[ IN DEVELOPMENT ]"
     },
     cta: {
       title: "READY TO",
@@ -531,6 +585,101 @@ const GlassCard = ({ icon: Icon, title, children }: { icon: any, title: string, 
   </div>
 );
 
+const LiquidityPoolCode = ({ lines, finalMessage }: { lines: string[], finalMessage: string }) => {
+  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [showFinalMessage, setShowFinalMessage] = useState(false);
+
+  useEffect(() => {
+    // Reset and restart cycle
+    if (currentLineIndex >= lines.length) {
+      setShowFinalMessage(true);
+      const resetTimer = setTimeout(() => {
+        setShowFinalMessage(false);
+        setDisplayedLines([]);
+        setCurrentLineIndex(0);
+        setCurrentCharIndex(0);
+      }, 2000); // Show final message for 2 seconds
+      return () => clearTimeout(resetTimer);
+    }
+
+    const currentLine = lines[currentLineIndex];
+    
+    if (currentCharIndex < currentLine.length) {
+      const timer = setTimeout(() => {
+        setDisplayedLines(prev => {
+          const newLines = [...prev];
+          if (!newLines[currentLineIndex]) newLines[currentLineIndex] = '';
+          newLines[currentLineIndex] = currentLine.substring(0, currentCharIndex + 1);
+          return newLines;
+        });
+        setCurrentCharIndex(prev => prev + 1);
+      }, 20); // Typing speed
+      return () => clearTimeout(timer);
+    } else {
+      const timer = setTimeout(() => {
+        setCurrentLineIndex(prev => prev + 1);
+        setCurrentCharIndex(0);
+      }, 50); // Delay between lines
+      return () => clearTimeout(timer);
+    }
+  }, [currentLineIndex, currentCharIndex, lines]);
+
+  const renderLine = (line: string | undefined) => {
+    if (!line) return <span>&nbsp;</span>;
+    if (line.startsWith('//')) return <span className="text-gray-500">{line}</span>;
+    if (line.startsWith('✓')) return <span className="text-green-400">{line}</span>;
+    if (line.includes('contract') || line.includes('function') || line.includes('mapping')) {
+      return <span className="text-blue-400">{line}</span>;
+    }
+    if (line.includes('require') || line.includes('external') || line.includes('public')) {
+      return <span className="text-purple-400">{line}</span>;
+    }
+    if (line.trim() === '') return <span>&nbsp;</span>;
+    return <span className="text-gray-300">{line}</span>;
+  };
+
+  return (
+    <div className="space-y-1">
+      {displayedLines.length === 0 && (
+        <div className="flex items-center gap-2 text-gray-500">
+          <Code size={16} className="animate-pulse" />
+          <span className="text-sm">Initializing compilation...</span>
+        </div>
+      )}
+      
+      {displayedLines.map((line, i) => line ? (
+        <div key={i} className="leading-relaxed">
+          {renderLine(line)}
+        </div>
+      ) : null)}
+      
+      {!showFinalMessage && currentLineIndex < lines.length && (
+        <span className="inline-block w-2 h-4 bg-neon animate-pulse ml-1" />
+      )}
+
+      {showFinalMessage && (
+        <div className="mt-8 flex items-center justify-center animate-[fadeIn_0.5s_ease-in]">
+          <div className="px-8 py-4 bg-gradient-to-r from-neon/20 to-blue-500/20 border-2 border-neon/50 rounded-lg">
+            <div className="flex items-center gap-3">
+              <Code className="text-neon animate-pulse" size={24} />
+              <span className="text-2xl font-bold font-mono text-white tracking-wider">
+                {finalMessage}
+              </span>
+              <div className="flex gap-1">
+                <div className="w-2 h-2 rounded-full bg-neon animate-bounce" style={{ animationDelay: '0ms' }} />
+                <div className="w-2 h-2 rounded-full bg-neon animate-bounce" style={{ animationDelay: '150ms' }} />
+                <div className="w-2 h-2 rounded-full bg-neon animate-bounce" style={{ animationDelay: '300ms' }} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const RoadmapItem = ({ phase, title, status, items }: { phase: string, title: string, status: 'done' | 'active' | 'pending', items: string[] }) => {
     const statusColors = {
         done: "text-neon border-neon",
@@ -804,6 +953,52 @@ export default function App() {
                     ))}
                 </div>
              </div>
+        </Section>
+
+        {/* --- LIQUIDITY POOL --- */}
+        <Section className="items-center">
+          <div className="max-w-4xl mx-auto w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              {/* Title */}
+              <div className="text-center mb-8">
+                <h2 className="text-4xl md:text-5xl font-black mb-3">
+                  <span className="text-neon">{t.liquidityPool.title}</span>
+                </h2>
+                <p className="text-gray-400 font-mono text-sm">{t.liquidityPool.subtitle}</p>
+              </div>
+
+              {/* Code Compilation Block */}
+              <div className="relative bg-black/90 border border-neon/20 rounded-lg overflow-hidden shadow-[0_0_30px_rgba(0,255,136,0.1)]">
+                {/* Terminal Header */}
+                <div className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-neon/10 to-transparent border-b border-neon/20">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  </div>
+                  <span className="text-gray-500 font-mono text-xs ml-2">liquidity_pool.sol</span>
+                </div>
+
+                {/* Code Content with Typewriter Effect */}
+                <div className="p-6 pb-8 font-mono text-sm h-[520px] overflow-hidden">
+                  <LiquidityPoolCode lines={t.liquidityPool.codeLines} finalMessage={t.liquidityPool.finalMessage} />
+                </div>
+
+                {/* Animated grid background */}
+                <div className="absolute inset-0 opacity-5 pointer-events-none -z-10">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: 'linear-gradient(#00ff88 1px, transparent 1px), linear-gradient(90deg, #00ff88 1px, transparent 1px)',
+                    backgroundSize: '20px 20px'
+                  }} />
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </Section>
 
         {/* --- CTA / FOOTER --- */}
