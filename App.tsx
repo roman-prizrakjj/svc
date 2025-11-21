@@ -581,7 +581,7 @@ const GlassCard = ({ icon: Icon, title, children }: { icon: any, title: string, 
       <Icon size={24} />
     </div>
     <h3 className="text-xl font-bold font-mono mb-3 text-white group-hover:text-neon transition-colors">{title}</h3>
-    <div className="text-gray-400 text-sm leading-relaxed">{children}</div>
+    <div className="text-white text-sm leading-relaxed">{children}</div>
   </div>
 );
 
@@ -637,7 +637,7 @@ const LiquidityPoolCode = ({ lines, finalMessage }: { lines: string[], finalMess
       return <span className="text-purple-400">{line}</span>;
     }
     if (line.trim() === '') return <span>&nbsp;</span>;
-    return <span className="text-gray-300">{line}</span>;
+    return <span className="text-white">{line}</span>;
   };
 
   return (
@@ -699,7 +699,7 @@ const RoadmapItem = ({ phase, title, status, items }: { phase: string, title: st
                 <h4 className="text-xl font-bold mb-4 text-white">{title}</h4>
                 <ul className="space-y-2">
                     {items.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                        <li key={i} className="flex items-start gap-2 text-sm text-white">
                             <span className="text-neon mt-1 flex-shrink-0">›</span> 
                             <span>{item}</span>
                         </li>
@@ -801,7 +801,7 @@ export default function App() {
               {t.titleLine2}
             </h1>
             
-            <p className="text-gray-400 font-mono text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed">
+            <p className="text-white font-mono text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed">
               {t.subtitle}
               <br/>
               <span className="text-white">{t.subtitleHighlight}</span>
@@ -838,10 +838,10 @@ export default function App() {
             <div className="order-1 md:order-2">
                 <GlitchText text={t.narrative.title} size="text-5xl md:text-7xl" />
                 <h3 className="text-2xl font-bold text-white mt-6 mb-6">{t.narrative.subtitle}</h3>
-                <p className="text-gray-400 text-lg mb-6 leading-relaxed">
+                <p className="text-white text-lg mb-6 leading-relaxed">
                     {t.narrative.desc}
                 </p>
-                <ul className="space-y-4 font-mono text-sm text-gray-300">
+                <ul className="space-y-4 font-mono text-sm text-white">
                     {t.narrative.list.map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
                           <CheckCircle className="text-neon" size={18} />
@@ -859,7 +859,7 @@ export default function App() {
                 <div className="mb-16 md:text-center">
                     <span className="text-neon font-mono text-sm tracking-widest uppercase mb-2 block">{t.utility.label}</span>
                     <h2 className="text-4xl md:text-6xl font-black text-white">{t.utility.title} <span className="text-neon">{t.utility.titleHighlight}</span></h2>
-                    <p className="text-gray-400 mt-4 max-w-2xl mx-auto">{t.utility.desc}</p>
+                    <p className="text-white mt-4 max-w-2xl mx-auto">{t.utility.desc}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -891,7 +891,7 @@ export default function App() {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-white mb-2">{t.growth.items[0].title}</h3>
-                                <p className="text-gray-400">{t.growth.items[0].text}</p>
+                                <p className="text-white">{t.growth.items[0].text}</p>
                             </div>
                         </div>
                         <div className="flex gap-4">
@@ -900,7 +900,7 @@ export default function App() {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-white mb-2">{t.growth.items[1].title}</h3>
-                                <p className="text-gray-400">{t.growth.items[1].text}</p>
+                                <p className="text-white">{t.growth.items[1].text}</p>
                             </div>
                         </div>
                         <div className="flex gap-4">
@@ -909,7 +909,7 @@ export default function App() {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-white mb-2">{t.growth.items[2].title}</h3>
-                                <p className="text-gray-400">{t.growth.items[2].text}</p>
+                                <p className="text-white">{t.growth.items[2].text}</p>
                             </div>
                         </div>
                     </div>
@@ -927,7 +927,7 @@ export default function App() {
                              <div className="text-6xl font-mono font-bold text-neon mb-2 drop-shadow-[0_0_10px_rgba(0,255,136,0.5)]">
                                 {t.growth.boxTitle}
                              </div>
-                             <div className="text-gray-400 uppercase tracking-widest text-sm font-bold">
+                             <div className="text-white uppercase tracking-widest text-sm font-bold">
                                 {t.growth.boxSub}
                              </div>
                         </div>
@@ -969,7 +969,7 @@ export default function App() {
                 <h2 className="text-4xl md:text-5xl font-black mb-3">
                   <span className="text-neon">{t.liquidityPool.title}</span>
                 </h2>
-                <p className="text-gray-400 font-mono text-sm">{t.liquidityPool.subtitle}</p>
+                <p className="text-white font-mono text-sm">{t.liquidityPool.subtitle}</p>
               </div>
 
               {/* Code Compilation Block */}
@@ -1012,7 +1012,7 @@ export default function App() {
             <h2 className="text-4xl md:text-7xl font-bold mb-8">
               {t.cta.title} <span className="text-neon">{t.cta.titleHighlight}</span>
             </h2>
-            <p className="text-gray-400 mb-10 max-w-2xl mx-auto">
+            <p className="text-white mb-10 max-w-2xl mx-auto">
                 {t.cta.desc}
                 <br />
                 <span className="text-white font-mono text-sm mt-2 block">{t.cta.sub}</span>
@@ -1078,7 +1078,7 @@ export default function App() {
                   {lang === 'ru' ? 'КУПИТЬ SVC' : 'BUY SVC'}
                 </h3>
               </div>
-              <p className="text-gray-400 text-sm font-mono">
+              <p className="text-white text-sm font-mono">
                 {lang === 'ru' ? 'Выберите платформу для покупки' : 'Choose a platform to buy'}
               </p>
             </div>
@@ -1100,7 +1100,7 @@ export default function App() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold font-mono text-lg">DexScreener</h4>
-                      <p className="text-gray-400 text-xs font-mono">
+                      <p className="text-white text-xs font-mono">
                         {lang === 'ru' ? 'Анализ и обмен' : 'Analytics & Swap'}
                       </p>
                     </div>
@@ -1124,7 +1124,7 @@ export default function App() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold font-mono text-lg">Blum</h4>
-                      <p className="text-gray-400 text-xs font-mono">
+                      <p className="text-white text-xs font-mono">
                         {lang === 'ru' ? 'Telegram мини-приложение' : 'Telegram Mini App'}
                       </p>
                     </div>
