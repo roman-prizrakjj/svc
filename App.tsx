@@ -1109,6 +1109,30 @@ export default function App() {
                 </div>
               </a>
 
+              {/* STON.fi */}
+              <a
+                href="https://app.ston.fi/swap?chartVisible=true&chartInterval=1w&ft=TON&tt=EQBLwAPmuN_gNJSbISUXVKMOJgVXapdA459OxLPT-pjq_esM"
+                target="_blank"
+                rel="noreferrer"
+                className="group relative block p-5 bg-gradient-to-r from-purple-500/10 to-transparent hover:from-purple-500/20 border border-purple-500/30 hover:border-purple-500 rounded-xl transition-all duration-300 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <div className="relative flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center">
+                      <Globe className="text-purple-400" size={24} />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold font-mono text-lg">STON.fi</h4>
+                      <p className="text-white text-xs font-mono">
+                        {lang === 'ru' ? 'DEX на TON' : 'DEX on TON'}
+                      </p>
+                    </div>
+                  </div>
+                  <Rocket className="text-purple-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />
+                </div>
+              </a>
+
               {/* Blum */}
               <a
                 href="https://t.me/blum/app?startapp=memepadjetton_SVC_iQSVW-ref_15wKs2ipdg"
