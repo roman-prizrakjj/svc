@@ -110,7 +110,7 @@ const CONTENT: { ru: ContentType; en: ContentType } = {
       items: [
         { title: "AI Компетенции", text: "Самый динамичный сектор рынка. SVC привязан к росту продуктов." },
         { title: "Реальная Экономика", text: "Нет «фейкового объема». Токен нужен для реальных услуг." },
-        { title: "Честный Старт", text: "Мы начали с нуля. Это обеспечивает органический поиск цены." }
+        { title: "Честный Старт", text: "Мы начали с нуля. Это обеспечивает органическую волатильность цены." }
       ],
       boxTitle: "AI + R&D",
       boxSub: "Вектор Роста"
@@ -844,7 +844,7 @@ export default function App() {
                 <ul className="space-y-4 font-mono text-sm text-white">
                     {t.narrative.list.map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                          <CheckCircle className="text-neon" size={18} />
+                          <CheckCircle className="text-neon shrink-0" size={32} />
                           <span>{item}</span>
                       </li>
                     ))}
@@ -887,7 +887,7 @@ export default function App() {
                     <div className="space-y-8">
                         <div className="flex gap-4">
                             <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0">
-                                <Cpu size={24} />
+                                <Cpu size={28} />
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-white mb-2">{t.growth.items[0].title}</h3>
